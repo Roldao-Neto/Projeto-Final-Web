@@ -1,66 +1,74 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import styles from "./page.module.css";
+import { useRouter } from "next/navigation";
+
+interface UserData {
+  username: string;
+  profile_character: string;
+}
 
 export default function Home() {
+  const router = useRouter();
+  const [user, setUser] = useState<UserData | null>(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("Token");
+
+    if (!token) {
+      router.push("/login");
+      return;
+    }
+
+    async function fetchUserData() {
+      try {
+        const response = await fetch("http://localhost:3000/api/me", {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setUser(data);
+        } else {
+          localStorage.removeItem("Token");
+          router.push("/login");
+        }
+      } catch (error) {
+        console.error("Erro na conexão", error);
+        alert("Erro ao carregar perfil");
+      }
+    }
+
+    fetchUserData();
+  }, [router]);
+
+  if (!user) return null;
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+    <div className="box">
+      <Image src={user.profile_character} alt="Avatar do Treinador" width={120} height={120} style={{ marginBottom: "10px" }}/>
+      
+      <h1 style={{ fontSize: '1.8rem', color: '#333', textTransform: 'capitalize' }}>
+        Olá, {user.username}!
+      </h1>
+      
+      <p style={{ margin: '10px 0', color: '#666' }}>
+        Bem-vindo de volta à sua jornada Pokémon.
+      </p>
+
+      <button
+        onClick={() => {
+          localStorage.removeItem("Token");
+          router.push("/login");
+        }}
+        style={{ marginTop: '20px', backgroundColor: '#d32f2f' }}
+      >
+        Sair (Logout)
+      </button>
     </div>
   );
 }

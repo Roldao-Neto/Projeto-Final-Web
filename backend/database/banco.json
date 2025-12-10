@@ -1,9 +1,9 @@
 [
     {
-        "id": 0,
-        "email": "admin@example.com",
-        "username": "admin",
-        "password": "admin123",
-        "profile_character": ""
+        "id": "95c016d7-562a-410a-82a1-69ab4804de53",
+        "email": "17968436fc9112ef00018a0f4961c8d1:0a1db51844ab40a9c1275a960277036d",
+        "username": "Rolds",
+        "password": "$2b$10$vffrhGAEvSyISccdCoSiC.zLEXJPbaTF.lvyOi3QmA.7SuQ1LFKuu",
+        "profile_character": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/145.png"
     }
 ]
