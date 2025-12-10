@@ -5,5 +5,12 @@
         "username": "Rolds",
         "password": "$2b$10$vffrhGAEvSyISccdCoSiC.zLEXJPbaTF.lvyOi3QmA.7SuQ1LFKuu",
         "profile_character": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/145.png"
+    },
+    {
+        "id": "a7416ab2-941c-4419-8d28-93e69e8f25eb",
+        "email": "56d8af1011fb90a50632cfafafaaea89:3f696b0d6b5873a638ddf6f7475ae6b391",
+        "username": "Rolds1",
+        "password": "$2b$10$buNHDJNcc0802UnE6fyQLufCgtTLDcGObkbgiji3tIZRNvrGcTpsK",
+        "profile_character": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/9.png"
     }
 ]

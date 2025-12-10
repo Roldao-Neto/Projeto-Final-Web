@@ -128,12 +128,14 @@ const updateProfile = async (req, res) => {
         
         if (pokemonId) {
             try {
-                const resp = await fetch(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png/`);
+                const resp = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
                 if(resp.ok) {
                     const data = await resp.json();
                     user.profile_character = data.sprites.front_default;
                 }
-            } catch(e) {}
+            } catch(e) {
+                res.status(400).send("Erro ao buscar Pokémon.");
+            }
         }
 
         users[index] = user;

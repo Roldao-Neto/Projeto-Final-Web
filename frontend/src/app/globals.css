@@ -104,3 +104,42 @@ footer {
 .destaque {
   color: #ff5050;
 }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro transparente */
+  display: flex;
+  justify-content: flex-end; /* Alinha a janela à direita */
+  z-index: 1000;
+}
+
+.side-window {
+  background-color: white;
+  width: 400px; /* Largura da janela */
+  height: 100%;
+  padding: 2rem;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+  animation: slideIn 0.3s ease-out; /* Animação de entrada */
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.close-btn {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+}
+
+/* Animação para deslizar da direita */
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
