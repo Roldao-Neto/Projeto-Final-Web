@@ -78,7 +78,7 @@ KEY = sua_chave_de_criptografia_aqui
 JWT_SECRET = sua_chave_jwt_aqui
 ```
 
-### Iniciando a Aplicação:
+### Iniciando a Aplicação
 
 Volte para a raiz do projeto e inicie o backend e frontend:
 
