@@ -30,6 +30,8 @@ Aqui estão algumas prévias das funcionalidades do projeto:
 
 ![Tela de Login](./screenshots/login.png)
 
+![Tela de Registro](./screenshots/register.png)
+
 ### Dashboard (Home Protegida)
 
 ![Dashboard](./screenshots/home.png)
@@ -37,6 +39,8 @@ Aqui estão algumas prévias das funcionalidades do projeto:
 ### Gerenciamento de Perfil
 
 ![Perfil](./screenshots/perfil.png)
+
+![Editar Perfil](./screenshots/editarPerfil.png)
 
 ### Página 404 Personalizada
 
