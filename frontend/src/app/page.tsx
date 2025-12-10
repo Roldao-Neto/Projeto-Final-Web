@@ -12,6 +12,7 @@ interface UserData {
 export default function Home() {
   const router = useRouter();
   const [user, setUser] = useState<UserData | null>(null);
+  const [timburrImage, setTimburrImage] = useState<string | null>(null);
 
   useEffect(() => {
     const token = localStorage.getItem("Token");
@@ -43,32 +44,35 @@ export default function Home() {
       }
     }
 
+    async function getTimburr() {
+    try {
+      const response = await fetch("https://pokeapi.co/api/v2/pokemon/532");
+      const data = await response.json();
+      setTimburrImage(data.sprites.other['official-artwork'].front_default);
+    } catch (error) {
+      console.error("Erro ao buscar Timburr", error);
+    }
+  }
+
+    getTimburr();
     fetchUserData();
   }, [router]);
 
   if (!user) return null;
 
+  const imagem = timburrImage || user.profile_character;
+
   return (
     <div className="box">
-      <Image src={user.profile_character} alt="Avatar do Treinador" width={120} height={120} style={{ marginBottom: "10px" }}/>
+      <Image src={imagem} alt="Avatar do Treinador" width={240} height={240}/>
       
       <h1 style={{ fontSize: '1.8rem', color: '#333', textTransform: 'capitalize' }}>
         Olá, {user.username}!
       </h1>
       
-      <p style={{ margin: '10px 0', color: '#666' }}>
-        Bem-vindo de volta à sua jornada Pokémon.
+      <p style={{ margin: '25px 0', color: '#666', fontSize: '1.1rem', maxWidth: '500px', textAlign: 'left' }}>
+        Ainda estou trabalhando na feature de montar seu time de Pokémon. Fique ligado para mais atualizações em breve!
       </p>
-
-      <button
-        onClick={() => {
-          localStorage.removeItem("Token");
-          router.push("/login");
-        }}
-        style={{ marginTop: '20px', backgroundColor: '#d32f2f' }}
-      >
-        Sair (Logout)
-      </button>
     </div>
   );
 }

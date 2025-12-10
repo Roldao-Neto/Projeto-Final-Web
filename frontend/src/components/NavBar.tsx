@@ -25,11 +25,6 @@ export default function NavBar() {
         return (
             <nav>
                 <button onClick={() => {
-                    router.push("/");
-                }}
-                >Principal</button>
-                
-                <button onClick={() => {
                     router.push("/perfil");
                 }}>Gerenciar Perfil</button>
 

@@ -12,6 +12,7 @@ export default function Cadastro()
     async function handleCadastro(e: React.FormEvent) {
         e.preventDefault();
         if (formData.password !== formData.confirmPassword) return alert("Senhas não conferem!");
+        if (formData.password.length < 4) return alert("A senha deve ter pelo menos 4 caracteres.");
 
         const response = await fetch("http://localhost:3000/api/register", {
             method: "POST",
